@@ -18,7 +18,6 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (User!==null) {
-      // Redirect to chat page
         navigate('/chat');
 
     }
