@@ -4,16 +4,20 @@
 }
 
 body{
-  background-color: #1b0e02;
+  background-color: rgb(29, 148, 146);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .container {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  left: 5vw; /* to center horizontally if needed */
   width: 90vw;
   height: 90vh;
-  background-color: #e8eff5;
+  background-color: #fbfbfb;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  display: flex;
+  margin-top: 10px;
 }

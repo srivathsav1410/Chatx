@@ -4,7 +4,7 @@
 }
 
 body{
-  background-color: #e5ddd5;
+  background-color: rgb(29, 148, 146);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,8 @@ body{
   left: 5vw; /* to center horizontally if needed */
   width: 90vw;
   height: 90vh;
-  background-color: #2c7ebc;
+  background-color: #fbfbfb;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
 }
