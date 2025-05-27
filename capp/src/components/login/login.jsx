@@ -19,8 +19,9 @@ export default function LoginPage() {
       console.log("i am called")
     console.log("User", User);  
     if (User!==null) {
-      localStorage.setItem('User', JSON.stringify(User));    
-navigate('/chat')
+      // Redirect to chat page
+        navigate('/chat');
+
     }
   }, [User]);
   return (
