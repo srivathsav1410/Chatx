@@ -9,9 +9,17 @@
   .top {
     padding: 20px;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     border-bottom: 1px solid black;
+  }
+  .top img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px; 
+
   }
 
   .center {
@@ -19,6 +27,7 @@
     flex-direction: column;
     font-family: sans-serif;
     gap: 10px;
+    overflow: auto;
     .message {
       max-width: 70%;
       border-radius: 20px;

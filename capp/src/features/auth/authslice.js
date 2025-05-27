@@ -24,12 +24,14 @@ const authSlice = createSlice({
             state.error = action.payload;
         },
         logout: (state) => {
+            console.log("logout called")
             state.User = null;
         },
     },
 });
 export const {
-  loginRequest,
+  
+    loginRequest,
   loginSuccess,
   loginFailure,
   logout,

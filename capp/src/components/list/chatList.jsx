@@ -1,8 +1,17 @@
 
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { openedChatDetails } from '../../features/chat/chatslice';
 
+const ChatList=({IsOpen})=>{
+    const dispatch = useDispatch(); 
 
-const ChatList=(chatData)=>{
-    console.log(chatData.chatData)
+    const { Friends } = useSelector((state) => state.chat);
+    console.log("Friends", Friends);  
+  function handleclick(chat){
+    dispatch(openedChatDetails(chat)); 
+    IsOpen(true)
+  }
         return(
         <div className="chatApp">
        <div >
@@ -17,11 +26,14 @@ const ChatList=(chatData)=>{
     marginTop:'20px'
   }}
 >
-{chatData.chatData.map((chat) => (
-  <div key={chat.id} className="chatItem" style={{ borderBottom: '1px solid #ccc', padding: '10px' }}>
-    <div className="text">
-      <div style={{ fontWeight: 'bold', fontSize: '16px', color: '#333' }}>{chat.name}</div>
-      <div style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>{chat.lastMessage}</div>
+{Friends!=null && Friends.map((chat) => (
+  <div key={chat.friendId} className="chatItem" style={{ borderBottom: '1px solid #ccc', padding: '10px' }}>
+    <div className="text" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer',gap: '10px' }}>
+      <img
+        src={chat.imageUrl}
+        alt="Profile"
+        style={{ width: '50px', height: '50px', borderRadius: '50%' }}/>
+      <div style={{ fontWeight: 'bold', fontSize: '16px', color: '#333' }} onClick={(e)=>handleclick(chat)}>{chat.userName}</div>
     </div>
   </div>
 ))}

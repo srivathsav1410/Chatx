@@ -9,18 +9,18 @@ export default function LoginPage() {
    const dispatch = useDispatch();
    const { User } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-
-   console.log(User)
   const handleSubmit = (e) => {
     e.preventDefault();
      dispatch(loginRequest({ username, password }));
   };
 
-  useEffect(() => {
+  useEffect(() => 
+    {
+      console.log("i am called")
+    console.log("User", User);  
     if (User!==null) {
-      // Redirect to chat page
-        navigate('/chat');
-
+      localStorage.setItem('User', JSON.stringify(User));    
+navigate('/chat')
     }
   }, [User]);
   return (
@@ -36,6 +36,12 @@ export default function LoginPage() {
     <div class="input-submit">
      <button type="submit">Login</button>
     </div>   
+
+    <div className="input-submit">
+      <button type="button" onClick={()=> navigate('/register')} className="register-button"> 
+        Register
+      </button>
+    </div>
   </form>
 
 </div>
