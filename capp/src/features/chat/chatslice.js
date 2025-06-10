@@ -6,7 +6,8 @@ const initialState = {
   messages: null,
   error: null,
   loading: false,
-  img: null
+  img: null,
+  requestType:null
 };
 
 const chatSlice = createSlice({
@@ -14,7 +15,8 @@ const chatSlice = createSlice({
   initialState,
   reducers: {
     getFriendRequest: (state) => {
-      console.log("called saga")
+
+      console.log(state)
       state.loading = true;
       state.error = null;
     },
@@ -69,6 +71,9 @@ const chatSlice = createSlice({
     clearImage: (state) => {
       state.img = null;
     },  
+       sendRequest:(state)=>{
+      state.requestType=null;
+  }
   },
 });
 
@@ -86,6 +91,7 @@ export const {
   sendImage,
   SetImage,
   clearImage,
+  sendRequest
 } = chatSlice.actions;
 
 export default chatSlice.reducer;

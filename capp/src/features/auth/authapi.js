@@ -8,12 +8,18 @@ export const loginAPI = async (credentials) => {
         'Content-Type': 'application/json',
       },
     });
-
-    return response.data; // assuming response contains user data
+    return response.data; 
   } catch (error) {
-    // Re-throw a readable error message
       throw new Error('Login failed. Please try again.');
     
+  }
+};
+export const getUsers = async (credentials) => {
+  try {
+    const response = await axios.get(`https://localhost:7271/api/FriendRequest/getSearch?userName=${credentials}`);
+    return response.data; 
+    } catch (error) {
+      throw new Error('Login Failed'); 
   }
 };
 

@@ -1,8 +1,4 @@
 import * as React from 'react';
-import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
-import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
-import { TextField } from '@fluentui/react/lib/TextField';
-import { AddSquareRegular } from '@fluentui/react-icons';
 import { FiLogOut } from 'react-icons/fi'; // Logout icon
 
 import { sendImage } from '../../features/chat/chatslice';
@@ -11,13 +7,13 @@ import { useSelector } from 'react-redux';
 import './userinfo.css';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../features/auth/authslice';
+import NotificationDropdown from "./notificationdropdown"
+
 const UserInfo=()=>{  
     const dispatch = useDispatch();
       const navigate = useNavigate();
 
-    const [hideDialog, setHideDialog] = React.useState(true);
-    const [inputValue, setInputValue] = React.useState('');
-    const toggleDialog = () => setHideDialog(!hideDialog);
+    
     const { User } = useSelector((state) => state.auth);
     console.log(User)
      const fileInputRef = React.useRef(null);
@@ -36,19 +32,10 @@ const UserInfo=()=>{
 
   const handleLogout = () => {  
 dispatch(logout());
-navigate('/'); // Redirect to login page after logout
+navigate('/'); 
   }
-    const handleInputChange = (event, newValue) => {
-      setInputValue(newValue || '');
-    };
-  
-    const handleSubmit = () => {
-      console.log('Submitted value:', inputValue);
-        // AddName(inputValue); 
-      toggleDialog();
-    };
+    
       const  handleImageChange  = (e) => {
-        
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
@@ -99,30 +86,10 @@ navigate('/'); // Redirect to login page after logout
 
             <div className='icons' style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
 <FiLogOut size={20} onClick={handleLogout} style={{ cursor: 'pointer' }} />
-            <AddSquareRegular style={{ fontSize: '32px' }}  onClick={toggleDialog}/>
+<NotificationDropdown/>
+
             </div>
-            <Dialog
-        hidden={hideDialog}
-        onDismiss={toggleDialog}
-        dialogContentProps={{
-          type: DialogType.normal,
-          title: 'Enter Your Input',
-          subText: 'Please provide your input below.',
-        }}
-        modalProps={{
-          isBlocking: false,
-        }}
-      >
-        <TextField
-          label="Your Input"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        <DialogFooter>
-          <PrimaryButton onClick={handleSubmit} text="Submit" />
-          <DefaultButton onClick={toggleDialog} text="Cancel" />
-        </DialogFooter>
-      </Dialog>
+         
        {showDialog && (
         <div
           style={{
@@ -165,7 +132,7 @@ navigate('/'); // Redirect to login page after logout
         accept="image/*"
         ref={fileInputRef}
         onChange={handleImageChange}
-        style={{ display: 'none' }} // Hide the file input
+        style={{ display: 'none' }} 
       />
     
         </div>

@@ -1,7 +1,7 @@
 
 import { call,put,takeLatest } from "redux-saga/effects";
-import { getFriendsAPI,getMessagesAPI,SendMessageAPI,sendImageAPI} from "./chatapi";
- import  {clearImage, getFriendRequest, getMessages,sendImage,sendMessage,SetImage} from "./chatslice";
+import { getFriendsAPI,getMessagesAPI,SendMessageAPI,sendImageAPI,sendRequestAPI} from "./chatapi";
+ import  { getFriendRequest, getMessages,sendImage,sendMessage,sendRequest,SetImage} from "./chatslice";
 import {
 MessageSendSuccess,
   FriendFetchSuccess,
@@ -48,11 +48,20 @@ function* SendImageAPISaga(action) {
     yield put(MessageSendFailure(error.message));
   }
 }
+function* SendRequestAPISaga(action) {
+  try {
+    const data = yield call(sendRequestAPI, action.payload);
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
 function* chatSaga() {
   yield takeLatest(getFriendRequest.type, fetchFriendsSaga);
   yield takeLatest(getMessages.type, fetchMessagesSaga);
   yield takeLatest(sendMessage.type, SendMessageAPISaga);
   yield takeLatest(sendImage.type, SendImageAPISaga);
+  yield takeLatest(sendRequest.type,SendRequestAPISaga);
 }
 
 export default chatSaga;

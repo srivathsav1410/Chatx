@@ -27,16 +27,14 @@ export const SendMessageAPI = async (credentials) => {
       },
     });
 
-    return response.data; // assuming response contains user data
+    return response.data; 
   } catch (error) {
-    // Re-throw a readable error message
       throw new Error('Login failed. Please try again.');
     
   }
 }
 export const sendImageAPI = async (credentials) => {
   try {
-    console.log("sendImageAPI", credentials)
 
     const response = await axios.post(`https://localhost:7271/api/User/uploadimage?userId=${credentials.userId}`, credentials.formData, {
       headers: {
@@ -44,6 +42,20 @@ export const sendImageAPI = async (credentials) => {
       },
     });
 
+    return response.data;
+    } catch (error) {
+      throw new Error('Login failed. Please try again.');
+    
+  }
+};
+export const sendRequestAPI = async (credentials) => {
+  try {
+
+    const response = await axios.post(`https://localhost:7271/api/FriendRequest/request`,credentials,{
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
     return response.data;
     } catch (error) {
       throw new Error('Login failed. Please try again.');

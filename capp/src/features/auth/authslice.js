@@ -5,6 +5,7 @@ const initialState = {
     loading: false,
     error: null,
     isAuthenticated: false,
+    Users:[]
 };
 
 const authSlice = createSlice({
@@ -27,6 +28,17 @@ const authSlice = createSlice({
             console.log("logout called")
             state.User = null;
         },
+        getSearchRequest:(state)=>{
+            
+            state.Users=[]
+        },
+        UsersFetchSuccess:(state,action)=>{
+            state.Users=action.payload
+        },
+        UserFetchFailure:(state,action)=>{
+            state.Users=action.payload
+        }
+
     },
 });
 export const {
@@ -35,6 +47,10 @@ export const {
   loginSuccess,
   loginFailure,
   logout,
+  getSearchRequest,
+  UsersFetchSuccess,
+  UsersFetchFailure
+
 } = authSlice.actions;
 
 export default authSlice.reducer;
